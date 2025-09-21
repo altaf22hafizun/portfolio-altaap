@@ -14,6 +14,7 @@ import GitIcon from "@/assets/icons/git";
 import ReactIcon from "@/assets/icons/react";
 import FlutterIcon from "@/assets/icons/flutter";
 import TypeScriptIcon from "@/assets/images/typescript-logo.svg";
+import LaravelIcon from "@/assets/icons/laravel";
 
 export default function SkillSection() {
   const skills = [
@@ -29,7 +30,7 @@ export default function SkillSection() {
     { name: "Bootstrap", icon: BootstrapIcon, color: "fill-purple-600" },
     { name: "TypeScript", icon: TypeScriptIcon },
     { name: "Git", icon: GitIcon, color: "fill-orange-600" },
-    { name: "Laravel", icon: PhpIcon, color: "fill-[#777BB4]" },
+    { name: "Laravel", icon: LaravelIcon, color: "fill-[#777BB4]" },
     { name: "React.Js", icon: ReactIcon, color: "fill-teal-300" },
     { name: "Next.js", icon: NextJsIcon },
   ];
