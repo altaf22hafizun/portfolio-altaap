@@ -122,15 +122,11 @@ export default function ProjectSection() {
       <div className="flex flex-col items-start justify-between w-full max-w-7xl">
         <h2
           className="text-3xl font-bold text-primary md:text-4xl mb-4"
-          data-aos="fade-left"
-          data-aos-duration="100000"
         >
           Project Experience
         </h2>
         <p
           className="mb-6 text-lg text-gray-600 text-justify"
-          data-aos="fade-left"
-          data-aos-duration="10000"
         >
           Showcasing my web development projects built with modern technologies.
         </p>

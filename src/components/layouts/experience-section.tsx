@@ -58,6 +58,7 @@ export default function ExperienceSection() {
               data-aos="fade-up"
               data-aos-delay={idx * 50}
               data-aos-offset="10"
+              data-aos-duration="10000"
             >
               <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start">
                 <div className="flex flex-col gap-1">
