@@ -134,42 +134,6 @@ export default function ProjectSection() {
         >
           Showcasing my web development projects built with modern technologies.
         </p>
-        {/* 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
-          {projects.map((item, idx) => (
-            <Card
-              key={idx}
-              className="flex flex-col gap-2 bg-white rounded-xl shadow hover:shadow-lg transition-shadow duration-300 overflow-hidden"
-            >
-              <Image
-                src={item.image}
-                width={400}
-                height={400}
-                alt={item.title}
-                className="w-full hover:scale-105 transition-transform duration-300 object-cover"
-              />
-              <CardHeader className="p-4">
-                <CardTitle className="text-xl md:text-2xl text-teal-700 font-bold">
-                  {item.title}
-                </CardTitle>
-                <CardDescription className="text-base text-gray-600 text-justify">
-                  {item.description}
-                </CardDescription>
-              </CardHeader>
-              <CardFooter className="flex flex-wrap gap-2">
-                {item.technologies.map((tech, techIdx) => (
-                  <span
-                    key={techIdx}
-                    className="text-sm bg-teal-700 text-white px-2 py-1 rounded-full"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-        */}
         {/* Grid untuk layar md ke atas */}
         <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8 w-full">
           {projects.map((item, idx) => (
