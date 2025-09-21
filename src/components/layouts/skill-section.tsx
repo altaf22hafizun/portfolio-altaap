@@ -30,7 +30,7 @@ export default function SkillSection() {
     { name: "Bootstrap", icon: BootstrapIcon, color: "fill-purple-600" },
     { name: "TypeScript", icon: TypeScriptIcon },
     { name: "Git", icon: GitIcon, color: "fill-orange-600" },
-    { name: "Laravel", icon: LaravelIcon, color: "fill-[#777BB4]" },
+    { name: "Laravel", icon: LaravelIcon, color: "fill-red-600" },
     { name: "React.Js", icon: ReactIcon, color: "fill-teal-300" },
     { name: "Next.js", icon: NextJsIcon },
   ];
