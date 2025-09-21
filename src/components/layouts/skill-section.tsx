@@ -41,10 +41,14 @@ export default function SkillSection() {
     >
       <div className="flex flex-col items-start justify-between w-full max-w-7xl">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 w-full">
-          {skills.map((item) => (
+          {skills.map((item, index) => (
             <Card
               key={item.name}
               className="flex flex-col items-center justify-center gap-2 bg-teal-50 rounded-xl shadow hover:shadow-lg transition-shadow duration-300"
+              data-aos="fade-up"
+              data-aos-delay={index * 30}
+              data-aos-offset="10"
+              data-aos-duration="10000"
             >
               {typeof item.icon === "function" ? (
                 <item.icon

@@ -3,9 +3,9 @@ import Link from "next/link";
 
 export default function AboutSection() {
   const action = [
-    { name: "Curriculum Vitae", href: "#projects" },
-    { name: "Resume", href: "#projects" },
-    { name: "View Portfolio", href: "#projects" },
+    { name: "Curriculum Vitae", href: "/documents/cv-altaap.pdf" },
+    { name: "Resume", href: "/documents/resume-altaf-hafizun.pdf" },
+    { name: "View Portfolio", href: "/documents/portfolio-altaf-hafizun.pdf" },
   ];
 
   return (
@@ -14,10 +14,17 @@ export default function AboutSection() {
       id="about"
     >
       <div className="flex flex-col items-start justify-between w-full max-w-7xl">
-        <h2 className="text-3xl font-bold text-primary md:text-4xl mb-4">
+        <h2
+          className="text-3xl font-bold text-primary md:text-4xl mb-4"
+          data-aos="fade-left"
+        >
           About Me
         </h2>
-        <p className="mb-6 text-lg text-gray-600 text-justify">
+        <p
+          className="mb-6 text-lg text-gray-600 text-justify"
+          data-aos="fade-left"
+          data-aos-delay="20"
+        >
           I`m Altaf Hafizun, a web developer with a passion for creating
           user-friendly and visually appealing websites. Experienced in building
           web applications with modern technologies and frameworks, I have a
@@ -33,6 +40,8 @@ export default function AboutSection() {
               target="_blank"
               aria-label={item.name}
               className="px-6 py-2 bg-teal-700 text-white rounded-md hover:bg-teal-600 transition-colors duration-300"
+              data-aos="fade-left"
+              data-aos-delay="30"
             >
               <UnduhIcon className="w-5 h-5 inline-block mr-2 fill-white" />
               {item.name}

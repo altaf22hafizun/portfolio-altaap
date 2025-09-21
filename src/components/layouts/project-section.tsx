@@ -120,10 +120,18 @@ export default function ProjectSection() {
       id="about"
     >
       <div className="flex flex-col items-start justify-between w-full max-w-7xl">
-        <h2 className="text-3xl font-bold text-primary md:text-4xl mb-4">
+        <h2
+          className="text-3xl font-bold text-primary md:text-4xl mb-4"
+          data-aos="fade-left"
+          data-aos-duration="100000"
+        >
           Project Experience
         </h2>
-        <p className="mb-6 text-lg text-gray-600 text-justify">
+        <p
+          className="mb-6 text-lg text-gray-600 text-justify"
+          data-aos="fade-left"
+          data-aos-duration="10000"
+        >
           Showcasing my web development projects built with modern technologies.
         </p>
         {/* 
@@ -167,7 +175,10 @@ export default function ProjectSection() {
           {projects.map((item, idx) => (
             <Card
               key={idx}
-              className="flex flex-col gap-2 bg-white rounded-xl shadow hover:shadow-lg overflow-hidden"
+              className="flex flex-col gap-2 bg-gray-50 rounded-xl shadow hover:shadow-lg overflow-hidden"
+              data-aos="fade-up"
+              data-aos-delay={idx * 50}
+              data-aos-offset="10"
             >
               <Image
                 src={item.image}
@@ -204,7 +215,12 @@ export default function ProjectSection() {
             <CarouselContent className="flex gap-4">
               {projects.map((item, idx) => (
                 <CarouselItem key={idx} className="basis-full">
-                  <Card className="flex flex-col gap-2 bg-white rounded-xl shadow overflow-hidden">
+                  <Card
+                    className="flex flex-col gap-2 bg-white rounded-xl shadow overflow-hidden"
+                    data-aos="fade-up"
+                    data-aos-delay={idx * 20}
+                    data-aos-offset="10"
+                  >
                     <Image
                       src={item.image}
                       width={200}

@@ -34,10 +34,19 @@ export default function ExperienceSection() {
       id="experience"
     >
       <div className="flex flex-col items-start justify-between w-full max-w-7xl">
-        <h2 className="text-3xl font-bold text-primary md:text-4xl mb-2">
+        <h2
+          className="text-3xl font-bold text-primary md:text-4xl mb-2"
+          data-aos="fade-right"
+          data-aos-duration="10000"
+        >
           Experience
         </h2>
-        <p className="text-gray-600 text-lg mb-8 text-justify">
+        <p
+          className="text-gray-600 text-lg mb-8 text-justify"
+          data-aos="fade-right"
+          data-aos-delay="20"
+          data-aos-duration="10000"
+        >
           My professional journey, including internships and work experience in
           web development.
         </p>
@@ -46,6 +55,10 @@ export default function ExperienceSection() {
             <Card
               key={idx}
               className="flex flex-col bg-teal-600 text-white rounded-xl shadow hover:shadow-2xl transition-shadow duration-300 p-6"
+              data-aos="fade-up"
+              data-aos-delay={idx * 50}
+              data-aos-offset="10"
+              // data-aos-duration="10000"
             >
               <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start">
                 <div className="flex flex-col gap-1">
@@ -54,9 +67,7 @@ export default function ExperienceSection() {
                   </h3>
                   <p className="font-medium text-base mb-2">{item.position}</p>
                 </div>
-                <span className="text-lg font-semibold">
-                  {item.period}
-                </span>
+                <span className="text-lg font-semibold">{item.period}</span>
               </div>
               <ul className="list-disc list-inside space-y-1 text-gray-100 text-justify">
                 {item.responsibilities.map((task, i) => (

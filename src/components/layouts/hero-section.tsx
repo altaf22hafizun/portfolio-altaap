@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import ProfileUser from "@/assets/images/altap.png";
 import Link from "next/link";
@@ -7,6 +9,7 @@ import EmailIcon from "@/assets/icons/email";
 import InstagramIcon from "@/assets/icons/instagram";
 
 export default function HeroSection() {
+
   const sosialMedia = [
     {
       name: "Github",
@@ -36,7 +39,10 @@ export default function HeroSection() {
       id="home"
     >
       <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl">
-        <div className="text-center py-10 md:text-left md:flex-1">
+        <div
+          className="text-center py-10 md:text-left md:flex-1"
+          data-aos="fade-right"
+        >
           <h5 className="text-xl md:text-2xl font-bold mb-4 tracking-wide">
             Welcome to My Portfolio
           </h5>
@@ -61,7 +67,10 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="relative flex justify-center lg:justify-end md:flex-1">
+        <div
+          className="relative flex justify-center lg:justify-end md:flex-1"
+          data-aos="fade-left"
+        >
           <Image
             src={ProfileUser}
             width={400}
