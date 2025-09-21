@@ -32,15 +32,15 @@ export default function HeroSection() {
 
   return (
     <section
-      className="flex min-h-screen items-center justify-center px-6 pt-12 md:pt-0"
+      className="flex lg:min-h-screen items-center justify-center px-8 md:px-16 pt-12 md:pt-0"
       id="home"
     >
       <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl">
         <div className="text-center py-10 md:text-left md:flex-1">
-          <h2 className="text-xl md:text-2xl font-bold mb-4 tracking-wide">
+          <h5 className="text-xl md:text-2xl font-bold mb-4 tracking-wide">
             Welcome to My Portfolio
-          </h2>
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 tracking-wider md:tracking-widest text-primary">
+          </h5>
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 tracking-wide md:tracking-widest text-teal-700">
             Altaf Hafizun
           </h1>
           <p className="mb-6 text-lg md:text-xl text-gray-600 max-w-md mx-auto md:mx-0">
@@ -55,7 +55,7 @@ export default function HeroSection() {
                 target="_blank"
                 aria-label={`${item.name} Profile`}
               >
-                <item.icon className="w-8 h-8 md:w-10 md:h-10 hover:fill-teal-600 transition-colors duration-300" />
+                <item.icon className="w-8 h-8 md:w-10 md:h-10 hover:fill-teal-700 transition-colors duration-300" />
               </Link>
             ))}
           </div>
@@ -67,14 +67,16 @@ export default function HeroSection() {
             width={400}
             height={400}
             alt="Altaf Hafizun"
-            className="mx-auto relative rounded-full -translate-y-4 md:-translate-y-6 mb-12"
+            className="w-80 md:w-120 h-80 md:h-120 mx-auto relative rounded-full  mb-12 object-cover"
+            priority={true}
           />
           <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:scale-125 -z-10">
             <svg
-              width="400"
-              height="400"
+              // width="400"
+              // height="400"
               viewBox="0 0 200 200"
               xmlns="http://www.w3.org/2000/svg"
+              className="w-80 md:w-100 h-80 md:h-100"
             >
               <path
                 fill="#14b8a6"

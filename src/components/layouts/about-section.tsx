@@ -10,19 +10,20 @@ export default function AboutSection() {
 
   return (
     <section
-      className="flex items-center justify-center px-6 py-12"
+      className="flex items-start justify-center px-8 md:px-16 py-12"
       id="about"
     >
-      <div className="flex flex-col items-center justify-between w-full max-w-4xl text-center">
-        {/* <h2 className="text-3xl font-bold text-primary md:text-4xl mb-4">
+      <div className="flex flex-col items-start justify-between w-full max-w-7xl">
+        <h2 className="text-3xl font-bold text-primary md:text-4xl mb-4">
           About Me
-        </h2> */}
-        <p className="mb-6 text-lg text-gray-600">
+        </h2>
+        <p className="mb-6 text-lg text-gray-600 text-justify">
           I`m Altaf Hafizun, a web developer with a passion for creating
-          user-friendly and visually appealing websites. With a strong
-          foundation in HTML, CSS, and JavaScript, I specialize in building
-          dynamic and interactive web applications that deliver exceptional user
-          experiences.
+          user-friendly and visually appealing websites. Experienced in building
+          web applications with modern technologies and frameworks, I have a
+          strong foundation in HTML, CSS, and JavaScript, and specialize in
+          developing dynamic and interactive web applications. I am always
+          enthusiastic about learning new things and improving my skills.
         </p>
         <div className="flex flex-wrap gap-4 justify-center md:justify-start">
           {action.map((item) => (
@@ -31,7 +32,7 @@ export default function AboutSection() {
               href={item.href}
               target="_blank"
               aria-label={item.name}
-              className="px-6 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700 transition-colors duration-300"
+              className="px-6 py-2 bg-teal-700 text-white rounded-md hover:bg-teal-600 transition-colors duration-300"
             >
               <UnduhIcon className="w-5 h-5 inline-block mr-2 fill-white" />
               {item.name}
