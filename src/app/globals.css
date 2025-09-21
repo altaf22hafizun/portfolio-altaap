@@ -119,12 +119,24 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* * {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+} */
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: arial;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
-    overflow-x: hidden;
   }
 }
