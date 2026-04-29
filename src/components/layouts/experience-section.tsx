@@ -3,6 +3,20 @@ import { Card } from "../ui/card";
 export default function ExperienceSection() {
   const experiences = [
     {
+      company: "Rumah Sakit UMMI Bogor",
+      location: "West Java, Bogor",
+      period: "Oct 2025 - April 2026",
+      position: "IT Programmer",
+      responsibilities: [
+        "Developed a Helpdesk Website System for External Media within the UMMI Group network to manage tickets, monitor status, and generate integrated service reports.",
+        "Developed a WhatsApp webcast system to notify patients about doctor schedule changes, policlinic closures, and doctor leave for both registered and scheduled patients.",
+        "Developed an Employee Disclosure Website System for the hospital to support internal monitoring and compliance.",
+        "Developed a Single Sign-On (SSO) Website System for the hospital to integrate access across internal applications.",
+        "Conducted feature enhancements and bug fixes on the hospital's web-based system.",
+        "Collaborated within a team, supporting testing and debugging of the hospital's web system.",
+      ],
+    },
+    {
       company: "Intern PT. Solusi Eksplorasi Rembulan Utama",
       location: "West Jakarta, Jakarta",
       period: "Feb 2025 - Mei 2025",

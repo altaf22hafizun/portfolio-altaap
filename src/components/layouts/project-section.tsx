@@ -14,6 +14,11 @@ import ProjectPerkampunganAdat from "@/assets/images/project-kampung-adat.png";
 import ProjectPuncakLabuang from "@/assets/images/project-puncak-labuang.png";
 import ProjectRumahSinggah from "@/assets/images/project-m-ihpan.png";
 import ProjectIventoryJurusan from "@/assets/images/project-iventory-jurusan.png";
+import ProjectSSO from "@/assets/images/project-sso.jpg";
+import ProjectBroadcast from "@/assets/images/project-broadcast.jpg";
+import ProjectSIMEG from "@/assets/images/project-simpeg.jpg";
+import ProjectSAKU from "@/assets/images/project-saku.jpg";
+import ProjectHelpdesk from "@/assets/images/project-helpdesk.jpg";
 import {
   Carousel,
   CarouselContent,
@@ -21,9 +26,59 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
+import { useState } from "react";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "../ui/pagination";
 
 export default function ProjectSection() {
   const projects = [
+    {
+      title: "Sistem Single Sign-On (SSO) Rumah Sakit",
+      description:
+        "A centralized Single Sign-On (SSO) system for hospitals that provides secure and seamless access across multiple internal applications.",
+      image: ProjectSSO,
+      technologies: ["PHP", "Livewire", "MySQL", "Laravel", "Tailwind CSS"],
+    },
+    {
+      title: "Sistem Broadcast Whatsapp Pasien",
+      description:
+        "A web-based system for sending WhatsApp notifications to registered and scheduled patients, featuring recipient selection based on queue data, message templates, and notification delivery history.",
+      image: ProjectBroadcast,
+      technologies: ["PHP", "Livewire", "MySQL", "Laravel", "Tailwind CSS"],
+    },
+    {
+      title: "Sistem kepegawaian ( SIMPEG )",
+      description:
+        "A hospital personnel management system for managing employee data, document exports, device access, and mobile notification broadcasts.",
+      image: ProjectSIMEG,
+      technologies: ["PHP", "Livewire", "MySQL", "Laravel", "Bootstrap CSS"],
+    },
+    {
+      title: "SISTEM APPRAISAL KINERJA UMMI( SAKU )",
+      description:
+        "A performance management system for handling unit and individual evaluations, KPI cutoff and closing processes, training proposals, and idea card submissions.",
+      image: ProjectSAKU,
+      technologies: ["PHP", "Livewire", "MySQL", "Laravel", "Bootstrap CSS"],
+    },
+    {
+      title: "Sistem Helpdesk EKSTERNAL Media UMMI",
+      description:
+        "A web-based request management system for the UMMI Group network to submit graphic design and videography work requests to the Multimedia Unit.",
+      image: ProjectHelpdesk,
+      technologies: [
+        "PHP",
+        "Livewire",
+        "PostgreSQL",
+        "Laravel",
+        "Tailwind CSS",
+      ],
+    },
     {
       title: "Dangau Studio - Platform Bisnis Seni Digital",
       description:
@@ -114,25 +169,28 @@ export default function ProjectSection() {
     },
   ];
 
+  const [page, setPage] = useState(1);
+  const perPage = 6;
+
+  const totalPages = Math.ceil(projects.length / perPage);
+
+  const currentProjects = projects.slice((page - 1) * perPage, page * perPage);
+
   return (
     <section
       className="flex items-start justify-center px-8 md:px-16 py-12"
       id="about"
     >
       <div className="flex flex-col items-start justify-between w-full max-w-7xl">
-        <h2
-          className="text-3xl font-bold text-primary md:text-4xl mb-4"
-        >
+        <h2 className="text-3xl font-bold text-primary md:text-4xl mb-4">
           Project Experience
         </h2>
-        <p
-          className="mb-6 text-lg text-gray-600 text-justify"
-        >
+        <p className="mb-6 text-lg text-gray-600 text-justify">
           Showcasing my web development projects built with modern technologies.
         </p>
         {/* Grid untuk layar md ke atas */}
         <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8 w-full">
-          {projects.map((item, idx) => (
+          {currentProjects.map((item, idx) => (
             <Card
               key={idx}
               className="flex flex-col gap-2 bg-gray-50 rounded-xl shadow hover:shadow-lg overflow-hidden"
@@ -167,6 +225,52 @@ export default function ProjectSection() {
               </CardFooter>
             </Card>
           ))}
+        </div>
+
+        {/* Pagination Desktop */}
+        <div
+          className="hidden md:flex justify-end w-full mt-8"
+          data-aos="fade-up"
+          data-aos-offset="10"
+        >
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (page > 1) setPage(page - 1);
+                  }}
+                />
+              </PaginationItem>
+
+              {[...Array(totalPages)].map((_, i) => (
+                <PaginationItem key={i}>
+                  <PaginationLink
+                    href="#"
+                    isActive={page === i + 1}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setPage(i + 1);
+                    }}
+                  >
+                    {i + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+
+              <PaginationItem>
+                <PaginationNext
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (page < totalPages) setPage(page + 1);
+                  }}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
         </div>
 
         {/* Carousel untuk layar sm ke bawah */}
