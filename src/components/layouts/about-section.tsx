@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function AboutSection() {
   const action = [
     { name: "Curriculum Vitae", href: "/documents/cv-altaap.pdf" },
-    { name: "Resume", href: "/documents/resume-altaf-hafizun.pdf" },
+    // { name: "Resume", href: "/documents/resume-altaf-hafizun.pdf" },
     { name: "View Portfolio", href: "/documents/portfolio-altaf-hafizun.pdf" },
   ];
 
