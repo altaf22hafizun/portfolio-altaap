@@ -1,11 +1,18 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState, useCallback } from "react";
+import { Card } from "../ui/card";
 import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi
+} from "../ui/carousel";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import ProjectDangauStudio from "@/assets/images/project-dangau-studio.png";
 import ProjectSugarCare from "@/assets/images/project-sugar-care.png";
 import ProjectPortalDatindo from "@/assets/images/project-portal-datindo.png";
@@ -19,304 +26,210 @@ import ProjectBroadcast from "@/assets/images/project-broadcast.jpg";
 import ProjectSIMEG from "@/assets/images/project-simpeg.jpg";
 import ProjectSAKU from "@/assets/images/project-saku.jpg";
 import ProjectHelpdesk from "@/assets/images/project-helpdesk.jpg";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "../ui/carousel";
-import { useState } from "react";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "../ui/pagination";
 
 export default function ProjectSection() {
   const projects = [
     {
       title: "Sistem Single Sign-On (SSO) Rumah Sakit",
-      description:
-        "A centralized Single Sign-On (SSO) system for hospitals that provides secure and seamless access across multiple internal applications.",
+      description: "A centralized Single Sign-On (SSO) system for hospitals that provides secure and seamless access across multiple internal applications.",
       image: ProjectSSO,
       technologies: ["PHP", "Livewire", "MySQL", "Laravel", "Tailwind CSS"],
     },
     {
       title: "Sistem Broadcast Whatsapp Pasien",
-      description:
-        "A web-based system for sending WhatsApp notifications to registered and scheduled patients, featuring recipient selection based on queue data, message templates, and notification delivery history.",
+      description: "A web-based system for sending WhatsApp notifications to registered and scheduled patients, featuring recipient selection based on queue data, message templates, and notification delivery history.",
       image: ProjectBroadcast,
       technologies: ["PHP", "Livewire", "MySQL", "Laravel", "Tailwind CSS"],
     },
     {
       title: "Sistem kepegawaian ( SIMPEG )",
-      description:
-        "A hospital personnel management system for managing employee data, document exports, device access, and mobile notification broadcasts.",
+      description: "A hospital personnel management system for managing employee data, document exports, device access, and mobile notification broadcasts.",
       image: ProjectSIMEG,
       technologies: ["PHP", "Livewire", "MySQL", "Laravel", "Bootstrap CSS"],
     },
     {
       title: "SISTEM APPRAISAL KINERJA UMMI( SAKU )",
-      description:
-        "A performance management system for handling unit and individual evaluations, KPI cutoff and closing processes, training proposals, and idea card submissions.",
+      description: "A performance management system for handling unit and individual evaluations, KPI cutoff and closing processes, training proposals, and idea card submissions.",
       image: ProjectSAKU,
       technologies: ["PHP", "Livewire", "MySQL", "Laravel", "Bootstrap CSS"],
     },
     {
       title: "Sistem Helpdesk EKSTERNAL Media UMMI",
-      description:
-        "A web-based request management system for the UMMI Group network to submit graphic design and videography work requests to the Multimedia Unit.",
+      description: "A web-based request management system for the UMMI Group network to submit graphic design and videography work requests to the Multimedia Unit.",
       image: ProjectHelpdesk,
-      technologies: [
-        "PHP",
-        "Livewire",
-        "PostgreSQL",
-        "Laravel",
-        "Tailwind CSS",
-      ],
+      technologies: ["PHP", "Livewire", "PostgreSQL", "Laravel", "Tailwind CSS"],
     },
     {
       title: "Dangau Studio - Platform Bisnis Seni Digital",
-      description:
-        "The Dangau Studio website is a digital platform for the art community in West Sumatra, particularly Dangau Studio, showcasing artist profiles, an online gallery, virtual exhibitions, and an e-commerce system integrated with Midtrans & RajaOngkir.",
+      description: "The Dangau Studio website is a digital platform for the art community in West Sumatra, particularly Dangau Studio, showcasing artist profiles, an online gallery, virtual exhibitions, and an e-commerce system integrated with Midtrans & RajaOngkir.",
       image: ProjectDangauStudio,
-      technologies: [
-        "PHP",
-        "MySQL",
-        "Laravel",
-        "Tailwind CSS",
-        "RajaOngkir",
-        "Midtrans - Payment Gateway",
-      ],
+      technologies: ["PHP", "MySQL", "Laravel", "Tailwind CSS", "RajaOngkir", "Midtrans"],
     },
     {
       title: "Website Sugar Care",
-      description:
-        "The Sugar Care website provides comprehensive information about the app’s features, advantages, FAQs, videos, and an “About Us” section, along with a button to download the application.",
+      description: "The Sugar Care website provides comprehensive information about the app’s features, advantages, FAQs, videos, and an “About Us” section, along with a button to download the application.",
       image: ProjectSugarCare,
       technologies: ["Next.js", "Tailwind CSS", "TypeScript"],
     },
     {
       title: "Website Portal Datindo",
-      description:
-        "The Datindo web portal is a platform for generating daily, monthly, and custom reports, integrated with RESTful APIs documented via Swagger and accessed using Axios.",
+      description: "The Datindo web portal is a platform for generating daily, monthly, and custom reports, integrated with RESTful APIs documented via Swagger and accessed using Axios.",
       image: ProjectPortalDatindo,
-      technologies: [
-        "Next.js",
-        "Tailwind CSS",
-        "TypeScript",
-        "Swagger API",
-        "Axios",
-        "Zustand",
-      ],
+      technologies: ["Next.js", "Tailwind CSS", "TypeScript", "Swagger API", "Axios", "Zustand"],
     },
     {
       title: "Website Databudi",
-      description:
-        "The Databudi website offers e-commerce market insights for Indonesian brands, featuring Shopee unlock insights and analytics tools, integrated with RESTful APIs via Axios.",
+      description: "The Databudi website offers e-commerce market insights for Indonesian brands, featuring Shopee unlock insights and analytics tools, integrated with RESTful APIs via Axios.",
       image: ProjectDatabudi,
-      technologies: [
-        "Next.js",
-        "Tailwind CSS",
-        "TypeScript",
-        "Directus",
-        "Axios",
-      ],
+      technologies: ["Next.js", "Tailwind CSS", "TypeScript", "Directus", "Axios"],
     },
     {
       title: "Website Perkampungan Adat Sijunjung",
-      description:
-        "Perkampungan Adat Sijunjung is a Laravel web platform showcasing the traditional village of Sijunjung, West Sumatra, with interactive virtual tours, local UMKM products and tour packages, cultural gallery, articles, and online transactions.",
+      description: "Perkampungan Adat Sijunjung is a Laravel web platform showcasing the traditional village of Sijunjung, West Sumatra, with interactive virtual tours, local UMKM products and tour packages, cultural gallery, articles, and online transactions.",
       image: ProjectPerkampunganAdat,
-      technologies: [
-        "PHP",
-        "MySQL",
-        "Laravel",
-        "Bootstrap",
-        "Virtual Tour 360",
-      ],
+      technologies: ["PHP", "MySQL", "Laravel", "Bootstrap", "Virtual Tour 360"],
     },
     {
       title: "Website Puncak Labuang",
-      description:
-        "Website Pariwisata Puncak Labuang is an information system platform showcasing tourism-related events, articles on biodiversity, and plant barcodes that can be scanned via a mobile app.",
+      description: "Website Pariwisata Puncak Labuang is an information system platform showcasing tourism-related events, articles on biodiversity, and plant barcodes that can be scanned via a mobile app.",
       image: ProjectPuncakLabuang,
       technologies: ["PHP", "MySQL", "Laravel", "Bootstrap"],
     },
     {
       title: "Website Rumah Singgah M Ihpan",
-      description:
-        "Website Rumah Singgah Pasien M. Ihpan is a web platform providing temporary accommodation for patients and families from remote areas, particularly Pasaman, undergoing treatment in Padang. Key features include a reservation system and donation integration with Midtrans to support operations.",
+      description: "Website Rumah Singgah Pasien M. Ihpan is a web platform providing temporary accommodation for patients and families from remote areas, particularly Pasaman, undergoing treatment in Padang. Key features include a reservation system and donation integration with Midtrans to support operations.",
       image: ProjectRumahSinggah,
-      technologies: [
-        "PHP",
-        "MySQL",
-        "Laravel",
-        "Bootstrap",
-        "Midtrans - Payment Gateway",
-      ],
+      technologies: ["PHP", "MySQL", "Laravel", "Bootstrap", "Midtrans"],
     },
     {
       title: "Website Iventory Jurusan Teknologi Informasi",
-      description:
-        "Sistem Informasi Inventori Jurusan Teknologi Informasi is a PHP and MySQL web application for managing inventory, featuring login, item management, stock monitoring, search, and transaction recording. ",
+      description: "Sistem Informasi Inventori Jurusan Teknologi Informasi is a PHP and MySQL web application for managing inventory, featuring login, item management, stock monitoring, search, and transaction recording.",
       image: ProjectIventoryJurusan,
       technologies: ["PHP", "MySQL", "Bootstrap"],
     },
   ];
 
-  const [page, setPage] = useState(1);
-  const perPage = 6;
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
-  const totalPages = Math.ceil(projects.length / perPage);
+  useEffect(() => {
+    if (!api) return;
 
-  const currentProjects = projects.slice((page - 1) * perPage, page * perPage);
+    setCurrent(api.selectedScrollSnap());
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  useEffect(() => {
+    if (!api) return;
+    if (isHovered) return;
+
+    const intervalId = setInterval(() => {
+      api.scrollNext();
+    }, 4500);
+
+    return () => clearInterval(intervalId);
+  }, [api, isHovered]);
+
+  const scrollTo = useCallback((index: number) => {
+    api?.scrollTo(index);
+  }, [api]);
 
   return (
-    <section
-      className="flex items-start justify-center px-8 md:px-16 py-12"
-      id="about"
-    >
-      <div className="flex flex-col items-start justify-between w-full max-w-7xl">
-        <h2 className="text-3xl font-bold text-primary md:text-4xl mb-4">
-          Project Experience
-        </h2>
-        <p className="mb-6 text-lg text-gray-600 text-justify">
-          Showcasing my web development projects built with modern technologies.
-        </p>
-        {/* Grid untuk layar md ke atas */}
-        <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8 w-full">
-          {currentProjects.map((item, idx) => (
-            <Card
-              key={idx}
-              className="flex flex-col gap-2 bg-gray-50 rounded-xl shadow hover:shadow-lg overflow-hidden"
-              data-aos="fade-up"
-              data-aos-delay={idx * 50}
-              data-aos-offset="10"
-            >
-              <Image
-                src={item.image}
-                width={400}
-                height={400}
-                alt={item.title}
-                className="w-full object-cover hover:scale-105 transition-transform duration-300"
-              />
-              <CardHeader className="p-4">
-                <CardTitle className="text-xl text-teal-700 font-bold">
-                  {item.title}
-                </CardTitle>
-                <CardDescription className="text-gray-600 text-sm text-justify">
-                  {item.description}
-                </CardDescription>
-              </CardHeader>
-              <CardFooter className="flex flex-wrap gap-2">
-                {item.technologies.map((tech, techIdx) => (
-                  <span
-                    key={techIdx}
-                    className="text-xs bg-teal-700 text-white px-2 py-1 rounded-full"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </CardFooter>
-            </Card>
-          ))}
+    <section className="py-20 bg-slate-50" id="projects">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="mb-12 md:text-center" data-aos="fade-up">
+          <div className="inline-block mb-4 px-3 py-1 rounded-full bg-teal-100 text-teal-800 text-sm font-semibold tracking-wide uppercase">
+            Portfolio
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            Project Experience
+          </h2>
+          <p className="text-lg text-slate-600 max-w-2xl md:mx-auto">
+            Showcasing my web development projects built with modern technologies.
+          </p>
         </div>
 
-        {/* Pagination Desktop */}
-        <div
-          className="hidden md:flex justify-end w-full mt-8"
-          data-aos="fade-up"
-          data-aos-offset="10"
+        <div 
+          className="relative px-2 md:px-10" 
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (page > 1) setPage(page - 1);
-                  }}
-                />
-              </PaginationItem>
-
-              {[...Array(totalPages)].map((_, i) => (
-                <PaginationItem key={i}>
-                  <PaginationLink
-                    href="#"
-                    isActive={page === i + 1}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setPage(i + 1);
-                    }}
-                  >
-                    {i + 1}
-                  </PaginationLink>
-                </PaginationItem>
-              ))}
-
-              <PaginationItem>
-                <PaginationNext
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (page < totalPages) setPage(page + 1);
-                  }}
-                />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
-        </div>
-
-        {/* Carousel untuk layar sm ke bawah */}
-        <div className="md:hidden">
-          <Carousel className="w-full grid grid-cols-1 overflow-hidden">
-            <CarouselContent className="flex gap-4">
-              {projects.map((item, idx) => (
-                <CarouselItem key={idx} className="basis-full">
-                  <Card
-                    className="flex flex-col gap-2 bg-white rounded-xl shadow overflow-hidden"
-                    data-aos="fade-up"
-                    data-aos-delay={idx * 20}
-                    data-aos-offset="10"
-                  >
-                    <Image
-                      src={item.image}
-                      width={200}
-                      height={200}
-                      alt={item.title}
-                      className="w-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                    <CardHeader>
-                      <CardTitle className="text-xl font-bold text-teal-700">
-                        {item.title}
-                      </CardTitle>
-                      <CardDescription className="text-gray-600 text-sm">
-                        {item.description}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardFooter className="flex flex-wrap gap-2">
-                      {item.technologies.map((tech, techIdx) => (
-                        <span
-                          key={techIdx}
-                          className="text-xs bg-teal-700 text-white px-2 py-1 rounded-full"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </CardFooter>
+          <Carousel
+            setApi={setApi}
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4 md:-ml-6">
+              {projects.map((project, idx) => (
+                <CarouselItem key={idx} className="pl-4 md:pl-6 basis-full md:basis-1/2 lg:basis-1/3">
+                  <Card className="overflow-hidden flex flex-col h-full bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all group select-none">
+                    <div className="aspect-[16/10] relative overflow-hidden bg-slate-100">
+                      <Image 
+                        src={project.image} 
+                        alt={project.title} 
+                        fill 
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        draggable={false}
+                      />
+                    </div>
+                    <div className="p-6 flex flex-col flex-grow">
+                      <h4 className="text-lg font-bold text-slate-900 mb-3 line-clamp-2">{project.title}</h4>
+                      <p className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-4">
+                        {project.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-100">
+                        {project.technologies.map((tech, i) => (
+                          <span key={i} className="text-xs font-medium text-slate-600 bg-slate-100 px-2.5 py-1 rounded-md">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </Card>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+
+            {/* Navigation Buttons for Desktop */}
+            <div className="hidden md:flex absolute top-1/2 -translate-y-1/2 -left-4 z-10">
+              <button 
+                onClick={() => api?.scrollPrev()} 
+                className="w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md flex items-center justify-center text-slate-600 hover:bg-slate-50 hover:text-teal-600 transition-colors"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft size={20} />
+              </button>
+            </div>
+            <div className="hidden md:flex absolute top-1/2 -translate-y-1/2 -right-4 z-10">
+              <button 
+                onClick={() => api?.scrollNext()} 
+                className="w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md flex items-center justify-center text-slate-600 hover:bg-slate-50 hover:text-teal-600 transition-colors"
+                aria-label="Next slide"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
           </Carousel>
+
+          {/* Pagination Dots */}
+          <div className="flex justify-center items-center gap-2 mt-10">
+            {api && Array.from({ length: api.scrollSnapList().length }).map((_, idx) => (
+              <button
+                key={idx}
+                className={`transition-all duration-300 rounded-full ${
+                  current === idx ? "w-6 h-2.5 bg-teal-600" : "w-2.5 h-2.5 bg-slate-300 hover:bg-slate-400"
+                }`}
+                onClick={() => scrollTo(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -23,7 +23,7 @@ export default function FooterSection() {
     },
     {
       name: "Email",
-      href: "mailto:6Bk3o@example.com",
+      href: "mailto:altafhafizun22@gmail.com",
       icon: EmailIcon,
     },
   ];

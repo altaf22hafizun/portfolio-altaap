@@ -28,17 +28,23 @@ export default function HeroSection() {
     },
     {
       name: "Email",
-      href: "mailto:6Bk3o@example.com",
+      href: "mailto:altafhafizun22@gmail.com",
       icon: EmailIcon,
     },
   ];
 
   return (
     <section
-      className="flex lg:min-h-screen items-center justify-center px-8 md:px-16 pt-12 md:pt-0"
+      className="relative flex lg:min-h-screen items-center justify-center px-8 md:px-16 pt-12 md:pt-0 overflow-hidden bg-slate-50"
       id="home"
     >
-      <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl">
+      {/* Background Decor */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-teal-400 opacity-20 blur-[100px]"></div>
+      </div>
+
+      <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl z-10 relative">
         <div
           className="text-center py-10 md:text-left md:flex-1"
           data-aos="fade-right"
